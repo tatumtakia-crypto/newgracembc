@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services & Bible Study - New Grace Missionary Baptist Church</title>
+    <title>New Grace Missionary Baptist Church</title>
+    <!-- Google Fonts: Cinzel for headers, Great Vibes for script, Plus Jakarta Sans for body -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -87,56 +88,187 @@
             transition: color 0.3s ease;
         }
 
-        nav a:hover, nav a.active {
+        nav a:hover {
             color: var(--sky-blue);
         }
 
-        /* Subpage Hero Banner */
-        .page-hero {
+        /* Hero Section: Sunshine Shimmer & Drifting Clouds */
+        .hero {
             position: relative;
             background-color: #0c3b63;
             background-image: 
                 radial-gradient(circle at 50% 20%, rgba(255, 245, 180, 0.95) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 70%),
                 linear-gradient(135deg, #1e629c 0%, #0c3b63 100%);
             background-size: 200% 200%;
-            padding: 5rem 2rem 4rem;
+            animation: sunGlow 10s ease-in-out infinite alternate;
+            padding: 8rem 2rem 6rem;
             text-align: center;
             color: var(--white);
             border-bottom: 6px solid var(--gold);
+            overflow: hidden;
         }
 
-        .page-hero h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
+        @keyframes sunGlow {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.15); }
+            100% { filter: brightness(1); }
+        }
+
+        /* Animated cloud overlay texture */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.15) 0%, transparent 60%);
+            background-size: 400% 400%;
+            animation: cloudDrift 25s linear infinite;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        @keyframes cloudDrift {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
             text-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        .page-hero .sub-motto {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            color: var(--light-gold);
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        .hero-badge-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin: 0 auto 1.5rem;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Main Content Layout */
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+        }
+
+        /* Handwriting / Signature Draw Animation for "Adding to the Body of Christ" */
+        .hero .sub-motto {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: var(--light-gold);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: 2px dashed rgba(254, 240, 138, 0.4);
+            width: 0;
+            animation: signWrite 4.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes signWrite {
+            0% {
+                width: 0%;
+                opacity: 0.3;
+                transform: translateY(10px) skewX(-10deg);
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                width: 100%;
+                opacity: 1;
+                transform: translateY(0) skewX(0deg);
+            }
+        }
+
+        .hero .address-tag {
+            display: inline-block;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+            color: var(--white);
+            margin-top: 1rem;
+        }
+
+        /* Action Buttons Container */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-custom {
+            background: var(--gold);
+            color: #0f172a;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: 2px solid var(--white);
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-custom:hover {
+            background: var(--white);
+            color: var(--sky-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-custom.secondary {
+            background: rgba(30, 98, 156, 0.8);
+            color: var(--white);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-custom.secondary:hover {
+            background: var(--sky-blue);
+            color: var(--light-gold);
+        }
+
+        /* Main Body Content */
         .container {
             max-width: 1200px;
-            margin: -3rem auto 4rem;
+            margin: -4rem auto 4rem;
             position: relative;
             z-index: 10;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 2.5rem;
         }
 
         @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
+                margin-top: 2rem;
             }
+            .hero h1 { font-size: 2.8rem; }
+            .hero .sub-motto { font-size: 2.2rem; white-space: normal; width: auto; animation: none; }
         }
 
         .card {
@@ -148,150 +280,170 @@
             margin-bottom: 2rem;
         }
 
-        .card.gold-border {
-            border-top-color: var(--gold);
-        }
-
         .card h2 {
             font-family: 'Cinzel', serif;
             color: var(--sky-blue);
             font-size: 2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .card.gold-border h2 {
-            color: var(--dark-text);
-        }
-
-        .schedule-item {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .schedule-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .schedule-item h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--sky-blue);
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .schedule-item .time {
-            font-weight: 700;
-            color: var(--dark-text);
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .schedule-item p {
+        .card p {
             color: #475569;
+            margin-bottom: 1.2rem;
             font-size: 1.05rem;
         }
 
-        /* Current Series Spotlight Box */
-        .series-spotlight {
+        .highlight-box {
             background: #f8fafc;
             border-left: 4px solid var(--gold);
-            padding: 1.2rem;
-            border-radius: 0 8px 8px 0;
-            margin-top: 1rem;
-        }
-
-        .series-spotlight h4 {
-            font-family: 'Cinzel', serif;
-            color: var(--sky-blue);
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.2rem;
-        }
-
-        .series-spotlight p {
-            font-size: 0.95rem;
-            color: var(--dark-text);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
             font-weight: 500;
-        }
-
-        .zoom-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #2D8CFF;
-            color: var(--white);
-            padding: 0.6rem 1.4rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-top: 1rem;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 15px rgba(45, 140, 255, 0.3);
-        }
-
-        .zoom-btn:hover {
-            background: #1a73e8;
-            transform: translateY(-2px);
-        }
-
-        .tithe-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--gold);
             color: var(--dark-text);
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-top: 1.5rem;
-            transition: background 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .tithe-btn:hover {
-            background: #c5a028;
-            transform: translateY(-2px);
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--light-gold);
-            color: #713f12;
-            padding: 0.2rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
-            border: 1px solid var(--gold);
-        }
-
-        .full-width-card {
-            grid-column: 1 / -1;
+        /* Sidebar Cards */
+        .sidebar-card {
             background: var(--white);
-            padding: 3rem;
+            padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(30, 98, 156, 0.08);
             border-top: 5px solid var(--gold);
+            margin-bottom: 2rem;
             text-align: center;
         }
 
-        .full-width-card h2 {
+        .sidebar-card h3 {
             font-family: 'Cinzel', serif;
             color: var(--sky-blue);
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .full-width-card p {
+        .sidebar-card p {
             color: #475569;
             font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Tithe.ly Embed Styles */
+        .tithely-embed-container {
+            width: 100%;
+            min-height: 550px;
+            border: none;
+            border-radius: 12px;
+            background: #ffffff;
+            margin-top: 1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+            border-top: 5px solid var(--gold);
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #64748b;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: var(--dark-text);
+        }
+
+        .modal-content h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--dark-text);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sky-blue);
+            box-shadow: 0 0 0 3px rgba(30, 98, 156, 0.1);
+        }
+
+        .form-submit {
+            background: var(--sky-blue);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit:hover {
+            background: #144973;
+        }
+
+        .form-result {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
         /* Footer */
@@ -333,120 +485,197 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="beliefs.html">Beliefs</a></li>
                     <li><a href="pastor.html">Leadership</a></li>
-                    <li><a href="service.html" class="active">Church Services</a></li>
+                    <li><a href="service.html">Church Services</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Subpage Hero -->
-    <section class="page-hero">
-        <h1>Worship & eCampus</h1>
-        <div class="sub-motto">Join Us in Person or Online</div>
+    <!-- Hero Banner: Radiant Sunshine + Drifting Clouds + Signature Writing Animation + Interaction Buttons -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="logo.png" alt="New Grace Badge" class="hero-badge-img">
+            <h1>New Grace MBC</h1>
+            <div class="sub-motto">Adding to the Body of Christ</div>
+            <div>
+                <div class="address-tag">1745 12th Pl SW • Birmingham, AL 35211</div>
+            </div>
+            
+            <!-- Guest Book & Prayer Request Buttons -->
+            <div class="action-buttons">
+                <button class="btn-custom" onclick="openModal('guestBookModal')">📖 Sign Guest Book</button>
+                <button class="btn-custom secondary" onclick="openModal('prayerModal')">🙏 Prayer Request</button>
+            </div>
+        </div>
     </section>
 
-    <!-- Main Content Layout -->
+    <!-- Content Section -->
     <div class="container">
-        
-        <!-- Church Campus Services Card -->
-        <div class="card">
-            <h2>Church Campus</h2>
-            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem;">
-                📍 1745 12th Place SW, Birmingham, AL 35211
-            </p>
-
-            <div class="schedule-item">
-                <h3>Sunday Services</h3>
-                <div class="time">10:00 AM</div>
-                <p>Praise & Worship</p>
-                <div class="badge">Youth Church Every Second Sunday</div>
-
-                <!-- Sermon Series & Lesson of the Week -->
-                <div class="series-spotlight">
-                    <h4>Current Sermon Series</h4>
-                    <p><strong>Walking in Divine Favor</strong></p>
-                    <h4 style="margin-top: 0.5rem;">Lesson of the Week</h4>
-                    <p><em>Opening the Windows of Blessing</em></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- eCampus Services Card -->
-        <div class="card gold-border">
-            <h2>eCampus Services</h2>
-            <p style="margin-bottom: 1.5rem;">Join our weekly services live via Zoom from wherever you are.</p>
-
-            <div class="schedule-item">
-                <h3>Sunday Worship</h3>
-                <div class="time">10:00 AM</div>
-                <p>Live Worship Service</p>
+        <!-- Main Welcome Message -->
+        <main>
+            <div class="card">
+                <h2>Welcome to New Grace MBC!</h2>
+                <p>We’re so glad you're here! Take a moment to explore and get to know us. Whether you're visiting for the first time or looking for a church to call home, we invite you and your family to join us for one of our weekly services.</p>
                 
-                <div class="series-spotlight">
-                    <h4>Current Sermon Series</h4>
-                    <p><strong>Walking in Divine Favor</strong></p>
-                    <h4 style="margin-top: 0.5rem;">Lesson of the Week</h4>
-                    <p><em>Opening the Windows of Blessing</em></p>
+                <div class="highlight-box">
+                    At New Grace MBC, we believe in doing life together as a family—growing in faith, supporting one another, and building a strong foundation rooted in Christ. We are committed to living the way we were created to live, loving the way we were created to love, and serving the way we were created to serve.
                 </div>
 
-                <div>
-                    <a href="http://www.zoom.us/j/4584223828" target="_blank" class="zoom-btn">
-                        <span>📹</span> Join Sunday Zoom
-                    </a>
-                </div>
+                <p>Have questions? Drop us a message in our online guest book or connect with one of our Pastors or Ministry Leaders—we're here for you! If you need prayer, send us a request online. No matter what you're facing, God is listening, and we are standing with you in faith.</p>
+                <p>We pray you and your family experience God's presence through worship, fellowship, and community. We can't wait to connect with you. See you soon!</p>
+                
+                <p style="margin-top: 2rem;">
+                    <strong>Many blessings,</strong><br>
+                    <em>The New Grace Family</em>
+                </p>
+                
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: #64748b;">
+                    Cedric R. Tatum, Senior Pastor<br>
+                    Shelia Penn, Assistant Pastor
+                </p>
+            </div>
+        </main>
+
+        <!-- Sidebar Components -->
+        <aside>
+            <div class="sidebar-card">
+                <h3>Our Mission</h3>
+                <p>Adding to the Body of Christ.</p>
             </div>
 
-            <div class="schedule-item">
-                <h3>Wednesday Bible Study</h3>
-                <div class="time">7:00 PM</div>
-                <p>Biblical Life Lessons</p>
-
-                <!-- Bible Study Series & Lesson of the Week -->
-                <div class="series-spotlight">
-                    <h4>Bible Study Series</h4>
-                    <p><strong>Foundations of Faith</strong></p>
-                    <h4 style="margin-top: 0.5rem;">Lesson of the Week</h4>
-                    <p><em>Building Upon the Rock</em></p>
-                </div>
-
-                <div>
-                    <a href="http://www.zoom.us/j/4584223828" target="_blank" class="zoom-btn">
-                        <span>📹</span> Join Wednesday Zoom
-                    </a>
-                </div>
+            <div class="sidebar-card">
+                <h3>Motto</h3>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--sky-blue);">Live! Love! Serve!</p>
             </div>
-        </div>
 
-        <!-- Tithes & Offering Card -->
-        <div class="card gold-border" style="grid-column: 1 / -1; text-align: center;">
-            <h2>Tithes & Offering</h2>
-            <p style="color: #475569; font-size: 1.1rem; max-width: 700px; margin: 0 auto 1.5rem;">
-                "Bring ye all the tithes into the storehouse... and prove me now herewith, saith the Lord of hosts." — Malachi 3:10
-            </p>
-            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem;">
-                Support the ministry and missions of New Grace Missionary Baptist Church securely online.
-            </p>
-            <div>
-                <a href="https://give.tithe.ly/?formId=94613f75-e4fc-4f89-bd4e-5061a8a27450&usedQrCode=true" target="_blank" class="tithe-btn">
-                    <span>💛</span> Give Online / Tithes & Offering
-                </a>
+            <!-- Tithes & Offering Giving Card with Inline Embed -->
+            <div class="sidebar-card" style="border-top-color: var(--sky-blue);">
+                <h3 style="color: var(--sky-blue);">Tithes & Offering</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Support the ministry and sow a seed safely online.</p>
+                <iframe src="https://give.tithe.ly/?formId=94613f75-e4fc-4f89-bd4e-5061a8a27450&usedQrCode=true" class="tithely-embed-container" title="Tithes and Offering Giving Form"></iframe>
             </div>
-        </div>
+        </aside>
+    </div>
 
-        <!-- Recorded Services Full Width Card -->
-        <div class="full-width-card">
-            <h2>Recorded Services</h2>
-            <p>Missed a service or want to rewatch a powerful message? Our video archive is on the way.</p>
-            <div class="badge" style="margin-top: 1.5rem; font-size: 1rem; padding: 0.5rem 1.5rem;">Coming Soon</div>
+    <!-- Guest Book Modal -->
+    <div id="guestBookModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('guestBookModal')">&times;</span>
+            <h3>Sign Our Guest Book</h3>
+            <form class="web3form" id="guestBookForm">
+                <input type="hidden" name="access_key" value="ae5c77b4-0bba-4043-aef8-dd9ccb0aeb4b">
+                <div class="form-group">
+                    <label for="gb-name">Full Name</label>
+                    <input type="text" id="gb-name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="gb-email">Email Address</label>
+                    <input type="email" id="gb-email" name="email" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="gb-message">Leave a Note / Message</label>
+                    <textarea id="gb-message" name="message" required placeholder="We'd love to hear from you..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Submit Entry</button>
+                <div class="form-result"></div>
+            </form>
         </div>
+    </div>
 
+    <!-- Prayer Request Modal -->
+    <div id="prayerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('prayerModal')">&times;</span>
+            <h3>Submit a Prayer Request</h3>
+            <form class="web3form" id="prayerForm">
+                <input type="hidden" name="access_key" value="ae5c77b4-0bba-4043-aef8-dd9ccb0aeb4b">
+                <div class="form-group">
+                    <label for="pr-name">Your Name (Optional)</label>
+                    <input type="text" id="pr-name" name="name" placeholder="Enter your name or write 'Anonymous'">
+                </div>
+                <div class="form-group">
+                    <label for="pr-email">Email Address (Optional)</label>
+                    <input type="email" id="pr-email" name="email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="pr-request">Prayer Request</label>
+                    <textarea id="pr-request" name="message" required placeholder="Share what you would like us to pray for..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Prayer Request</button>
+                <div class="form-result"></div>
+            </form>
+        </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-address">1745 12th Place SW • Birmingham, AL 35211</div>
+        <div class="footer-address">1745 12th Pl SW • Birmingham, AL 35211</div>
         <p>&copy; 2026 New Grace Missionary Baptist Church (MBC). All Rights Reserved.</p>
     </footer>
 
+    <!-- Interaction & AJAX Form Submission Script -->
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside content
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Handle Web3Forms via AJAX without redirecting
+        const forms = document.querySelectorAll('.web3form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const resultDiv = form.querySelector('.form-result');
+                const submitBtn = form.querySelector('.form-submit');
+                
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                resultDiv.style.color = '#1e629c';
+                resultDiv.textContent = 'Please wait...';
+
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        resultDiv.style.color = '#16a34a';
+                        resultDiv.textContent = 'Thank you! Your submission has been received successfully.';
+                        form.reset();
+                        setTimeout(() => {
+                            closeModal(form.closest('.modal').id);
+                            resultDiv.textContent = '';
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = submitBtn.dataset.originalText || 'Submit';
+                        }, 3000);
+                    } else {
+                        resultDiv.style.color = '#dc2626';
+                        resultDiv.textContent = json.message || 'Something went wrong. Please try again.';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit';
+                    }
+                })
+                .catch(error => {
+                    resultDiv.style.color = '#dc2626';
+                    resultDiv.textContent = 'Network error. Please check your connection and try again.';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
