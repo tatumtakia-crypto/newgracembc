@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Bible Study - New Grace Missionary Baptist Church</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky-blue: #1e629c;
+            --gold: #d4af37;
+            --light-gold: #fef08a;
+            --dark-text: #1e293b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--dark-text);
+            background: #f0f7ff;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Header / Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 4px 20px rgba(30, 98, 156, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .brand img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            object-fit: cover;
+        }
+
+        .brand-text {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--sky-blue);
+            letter-spacing: 0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--sky-blue);
+        }
+
+        /* Subpage Hero Banner */
+        .page-hero {
+            position: relative;
+            background-color: #0c3b63;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(255, 245, 180, 0.95) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 70%),
+                linear-gradient(135deg, #1e629c 0%, #0c3b63 100%);
+            background-size: 200% 200%;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            color: var(--white);
+            border-bottom: 6px solid var(--gold);
+        }
+
+        .page-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .page-hero .sub-motto {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: var(--light-gold);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1200px;
+            margin: -3rem auto 4rem;
+            position: relative;
+            z-index: 10;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(30, 98, 156, 0.08);
+            border-top: 5px solid var(--sky-blue);
+            margin-bottom: 2rem;
+        }
+
+        .card.gold-border {
+            border-top-color: var(--gold);
+        }
+
+        .card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-blue);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card.gold-border h2 {
+            color: var(--dark-text);
+        }
+
+        .schedule-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .schedule-item h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .schedule-item .time {
+            font-weight: 700;
+            color: var(--dark-text);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .schedule-item p {
+            color: #475569;
+            font-size: 1.05rem;
+        }
+
+        /* Current Series Spotlight Box */
+        .series-spotlight {
+            background: #f8fafc;
+            border-left: 4px solid var(--gold);
+            padding: 1.2rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+
+        .series-spotlight h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-blue);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+        }
+
+        .series-spotlight p {
+            font-size: 0.95rem;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .zoom-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2D8CFF;
+            color: var(--white);
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(45, 140, 255, 0.3);
+        }
+
+        .zoom-btn:hover {
+            background: #1a73e8;
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--light-gold);
+            color: #713f12;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            border: 1px solid var(--gold);
+        }
+
+        .full-width-card {
+            grid-column: 1 / -1;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(30, 98, 156, 0.08);
+            border-top: 5px solid var(--gold);
+            text-align: center;
+        }
+
+        .full-width-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-blue);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .full-width-card p {
+            color: #475569;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 4px solid var(--gold);
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer-address {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <img src="logo.png" alt="New Grace MBC Logo">
+                <span class="brand-text">New Grace MBC</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Subpage Hero -->
+    <section class="page-hero">
+        <h1>Worship & eCampus</h1>
+        <div class="sub-motto">Join Us in Person or Online</div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <div class="container">
+        
+        <!-- Church Campus Services Card -->
+        <div class="card">
+            <h2>Church Campus</h2>
+            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem;">
+                📍 1745 12th Place SW, Birmingham, AL 35211
+            </p>
+
+            <div class="schedule-item">
+                <h3>Sunday Services</h3>
+                <div class="time">10:00 AM</div>
+                <p>Praise & Worship</p>
+                <div class="badge">Youth Church Every Second Sunday</div>
+
+                <!-- Sermon Series & Lesson of the Week -->
+                <div class="series-spotlight">
+                    <h4>Current Sermon Series</h4>
+                    <p><strong>Walking in Divine Favor</strong></p>
+                    <h4 style="margin-top: 0.5rem;">Lesson of the Week</h4>
+                    <p><em>Opening the Windows of Blessing</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- eCampus Services Card -->
+        <div class="card gold-border">
+            <h2>eCampus Services</h2>
+            <p style="margin-bottom: 1.5rem;">Join our weekly services live via Zoom from wherever you are.</p>
+
+            <div class="schedule-item">
+                <h3>Sunday Worship</h3>
+                <div class="time">10:00 AM</div>
+                <p>Live Worship Service</p>
+                
+                <div class="series-spotlight">
+                    <h4>Current Sermon Series</h4>
+                    <p><strong>Walking in Divine Favor</strong></p>
+                    <h4 style="margin-top: 0.5rem;">Lesson of the Week</h4>
+                    <p><em>Opening the Windows of Blessing</em></p>
+                </div>
+
+                <div>
+                    <a href="http://www.zoom.us/j/4584223828" target="_blank" class="zoom-btn">
+                        <span>📹</span> Join Sunday Zoom
+                    </a>
+                </div>
+            </div>
+
+            <div class="schedule-item">
+                <h3>Wednesday Bible Study</h3>
+                <div class="time">7:00 PM</div>
+                <p>Biblical Life Lessons</p>
+
+                <!-- Bible Study Series & Lesson of the Week -->
+                <div class="series-spotlight">
+                    <h4>Bible Study Series</h4>
+                    <p><strong>Foundations of Faith</strong></p>
+                    <h4 style="margin-top: 0.5rem;">Lesson of the Week</h4>
+                    <p><em>Building Upon the Rock</em></p>
+                </div>
+
+                <div>
+                    <a href="http://www.zoom.us/j/4584223828" target="_blank" class="zoom-btn">
+                        <span>📹</span> Join Wednesday Zoom
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recorded Services Full Width Card -->
+        <div class="full-width-card">
+            <h2>Recorded Services</h2>
+            <p>Missed a service or want to rewatch a powerful message? Our video archive is on the way.</p>
+            <div class="badge" style="margin-top: 1.5rem; font-size: 1rem; padding: 0.5rem 1.5rem;">Coming Soon</div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-address">1745 12th Place SW • Birmingham, AL 35211</div>
+        <p>&copy; 2026 New Grace Missionary Baptist Church (MBC). All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
