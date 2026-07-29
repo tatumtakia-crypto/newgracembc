@@ -429,6 +429,13 @@
             background: #144973;
         }
 
+        .form-result {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
         /* Footer */
         footer {
             background: #0f172a;
@@ -539,7 +546,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('guestBookModal')">&times;</span>
             <h3>Sign Our Guest Book</h3>
-            <form action="https://api.web3forms.com/submit" method="POST">
+            <form class="web3form" id="guestBookForm">
                 <input type="hidden" name="access_key" value="ae5c77b4-0bba-4043-aef8-dd9ccb0aeb4b">
                 <div class="form-group">
                     <label for="gb-name">Full Name</label>
@@ -554,6 +561,7 @@
                     <textarea id="gb-message" name="message" required placeholder="We'd love to hear from you..."></textarea>
                 </div>
                 <button type="submit" class="form-submit">Submit Entry</button>
+                <div class="form-result"></div>
             </form>
         </div>
     </div>
@@ -563,7 +571,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('prayerModal')">&times;</span>
             <h3>Submit a Prayer Request</h3>
-            <form action="https://api.web3forms.com/submit" method="POST">
+            <form class="web3form" id="prayerForm">
                 <input type="hidden" name="access_key" value="ae5c77b4-0bba-4043-aef8-dd9ccb0aeb4b">
                 <div class="form-group">
                     <label for="pr-name">Your Name (Optional)</label>
@@ -578,6 +586,7 @@
                     <textarea id="pr-request" name="message" required placeholder="Share what you would like us to pray for..."></textarea>
                 </div>
                 <button type="submit" class="form-submit">Send Prayer Request</button>
+                <div class="form-result"></div>
             </form>
         </div>
     </div>
@@ -588,7 +597,7 @@
         <p>&copy; 2026 New Grace Missionary Baptist Church (MBC). All Rights Reserved.</p>
     </footer>
 
-    <!-- Modal Interaction Script -->
+    <!-- Interaction & AJAX Form Submission Script -->
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
@@ -604,6 +613,52 @@
                 event.target.style.display = 'none';
             }
         }
+
+        // Handle Web3Forms via AJAX without redirecting
+        const forms = document.querySelectorAll('.web3form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const resultDiv = form.querySelector('.form-result');
+                const submitBtn = form.querySelector('.form-submit');
+                
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                resultDiv.style.color = '#1e629c';
+                resultDiv.textContent = 'Please wait...';
+
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        resultDiv.style.color = '#16a34a';
+                        resultDiv.textContent = 'Thank you! Your submission has been received successfully.';
+                        form.reset();
+                        setTimeout(() => {
+                            closeModal(form.closest('.modal').id);
+                            resultDiv.textContent = '';
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = submitBtn.dataset.originalText || 'Submit';
+                        }, 3000);
+                    } else {
+                        resultDiv.style.color = '#dc2626';
+                        resultDiv.textContent = json.message || 'Something went wrong. Please try again.';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit';
+                    }
+                })
+                .catch(error => {
+                    resultDiv.style.color = '#dc2626';
+                    resultDiv.textContent = 'Network error. Please check your connection and try again.';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                });
+            });
+        });
     </script>
 </body>
 </html>
