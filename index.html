@@ -229,6 +229,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
         }
 
         .btn-custom:hover {
@@ -538,18 +539,19 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('guestBookModal')">&times;</span>
             <h3>Sign Our Guest Book</h3>
-            <form onsubmit="handleFormSubmit(event, 'Thank you for signing our guest book!')">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="ae5c77b4-0bba-4043-aef8-dd9ccb0aeb4b">
                 <div class="form-group">
                     <label for="gb-name">Full Name</label>
-                    <input type="text" id="gb-name" required placeholder="Enter your full name">
+                    <input type="text" id="gb-name" name="name" required placeholder="Enter your full name">
                 </div>
                 <div class="form-group">
                     <label for="gb-email">Email Address</label>
-                    <input type="email5" id="gb-email" required placeholder="name@example.com">
+                    <input type="email" id="gb-email" name="email" required placeholder="name@example.com">
                 </div>
                 <div class="form-group">
                     <label for="gb-message">Leave a Note / Message</label>
-                    <textarea id="gb-message" placeholder="We'd love to hear from you..."></textarea>
+                    <textarea id="gb-message" name="message" required placeholder="We'd love to hear from you..."></textarea>
                 </div>
                 <button type="submit" class="form-submit">Submit Entry</button>
             </form>
@@ -561,18 +563,19 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('prayerModal')">&times;</span>
             <h3>Submit a Prayer Request</h3>
-            <form onsubmit="handleFormSubmit(event, 'Your prayer request has been received. We are standing with you in faith!')">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="ae5c77b4-0bba-4043-aef8-dd9ccb0aeb4b">
                 <div class="form-group">
                     <label for="pr-name">Your Name (Optional)</label>
-                    <input type="text" id="pr-name" placeholder="Enter your name or write 'Anonymous'">
+                    <input type="text" id="pr-name" name="name" placeholder="Enter your name or write 'Anonymous'">
                 </div>
                 <div class="form-group">
                     <label for="pr-email">Email Address (Optional)</label>
-                    <input type="email" id="pr-email" placeholder="name@example.com">
+                    <input type="email" id="pr-email" name="email" placeholder="name@example.com">
                 </div>
                 <div class="form-group">
                     <label for="pr-request">Prayer Request</label>
-                    <textarea id="pr-request" required placeholder="Share what you would like us to pray for..."></textarea>
+                    <textarea id="pr-request" name="message" required placeholder="Share what you would like us to pray for..."></textarea>
                 </div>
                 <button type="submit" class="form-submit">Send Prayer Request</button>
             </form>
@@ -593,16 +596,6 @@
 
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
-        }
-
-        function handleFormSubmit(event, successMessage) {
-            event.preventDefault();
-            alert(successMessage);
-            event.target.reset();
-            // Close all modals
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = 'none';
-            });
         }
 
         // Close modal when clicking outside content
