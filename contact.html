@@ -254,6 +254,13 @@
             background: #144973;
         }
 
+        .form-result {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
         /* Footer */
         footer {
             background: #0f172a;
@@ -338,24 +345,26 @@
         <!-- Contact Message Form Card -->
         <div class="card" style="border-top-color: var(--gold);">
             <h2>Send Us a Message</h2>
-            <form onsubmit="handleContactSubmit(event)">
+            <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                <input type="hidden" name="access_key" value="56684729-0e31-4389-a060-4a67c48e42d5">
                 <div class="form-group">
                     <label for="c-name">Your Name</label>
-                    <input type="text" id="c-name" required placeholder="Enter your full name">
+                    <input type="text" id="c-name" name="name" required placeholder="Enter your full name">
                 </div>
                 <div class="form-group">
                     <label for="c-email">Email Address</label>
-                    <input type="email" id="c-email" required placeholder="name@example.com">
+                    <input type="email" id="c-email" name="email" required placeholder="name@example.com">
                 </div>
                 <div class="form-group">
                     <label for="c-subject">Subject</label>
-                    <input type="text" id="c-subject" required placeholder="What is this regarding?">
+                    <input type="text" id="c-subject" name="subject" required placeholder="What is this regarding?">
                 </div>
                 <div class="form-group">
                     <label for="c-message">Message</label>
-                    <textarea id="c-message" required placeholder="Type your message here..."></textarea>
+                    <textarea id="c-message" name="message" required placeholder="Type your message here..."></textarea>
                 </div>
                 <button type="submit" class="form-submit">Send Message</button>
+                <div class="form-result" id="contactResult"></div>
             </form>
         </div>
     </div>
@@ -366,13 +375,49 @@
         <p>&copy; 2026 New Grace Missionary Baptist Church (MBC). All Rights Reserved.</p>
     </footer>
 
-    <!-- Form Submit Script -->
+    <!-- Form AJAX Submission Script -->
     <script>
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            alert('Thank you for reaching out to New Grace MBC! Your message has been sent.');
-            event.target.reset();
-        }
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const resultDiv = document.getElementById('contactResult');
+            const submitBtn = contactForm.querySelector('.form-submit');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            resultDiv.style.color = '#1e629c';
+            resultDiv.textContent = 'Please wait...';
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    resultDiv.style.color = '#16a34a';
+                    resultDiv.textContent = 'Thank you for reaching out to New Grace MBC! Your message has been sent successfully.';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        resultDiv.textContent = '';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Send Message';
+                    }, 4000);
+                } else {
+                    resultDiv.style.color = '#dc2626';
+                    resultDiv.textContent = json.message || 'Something went wrong. Please try again.';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+            })
+            .catch(error => {
+                resultDiv.style.color = '#dc2626';
+                resultDiv.textContent = 'Network error. Please check your connection and try again.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            });
+        });
     </script>
 </body>
 </html>
