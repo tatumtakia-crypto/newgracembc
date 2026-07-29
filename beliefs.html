@@ -91,6 +91,46 @@
             color: var(--sky-blue);
         }
 
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--sky-blue);
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 3px solid var(--gold);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+
+            nav.active {
+                max-height: 400px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem 0;
+            }
+        }
+
         /* Subpage Hero Banner */
         .page-hero {
             position: relative;
@@ -246,7 +286,8 @@
                 <img src="logo.png" alt="New Grace MBC Logo">
                 <span class="brand-text">New Grace MBC</span>
             </a>
-            <nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">&#9776;</button>
+            <nav id="navMenu">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
@@ -318,5 +359,20 @@
         <p>&copy; 2026 New Grace Missionary Baptist Church (MBC). All Rights Reserved.</p>
     </footer>
 
+    <!-- Mobile Menu Script -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
