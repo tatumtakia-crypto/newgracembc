@@ -474,23 +474,23 @@
             <h2>Guest Book & Prayer Request</h2>
             <p>Welcome! We would love to record your visit and lift your prayers up to the Lord.</p>
             
-            <form onsubmit="handleCombinedSubmit(event)">
+            <form action="prayer.html" method="POST">
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="gb-name">Full Name *</label>
-                        <input type="text" id="gb-name" required placeholder="Enter your full name">
+                        <input type="text" id="gb-name" name="name" required placeholder="Enter your full name">
                     </div>
                     <div class="form-group">
                         <label for="gb-email">Email Address *</label>
-                        <input type="email" id="gb-email" required placeholder="name@example.com">
+                        <input type="email" id="gb-email" name="email" required placeholder="name@example.com">
                     </div>
                     <div class="form-group">
                         <label for="gb-phone">Phone Number</label>
-                        <input type="tel" id="gb-phone" placeholder="(205) 555-0199">
+                        <input type="tel" id="gb-phone" name="phone" placeholder="(205) 555-0199">
                     </div>
                     <div class="form-group">
                         <label for="gb-visit-type">Visiting Status</label>
-                        <select id="gb-visit-type">
+                        <select id="gb-visit-type" name="visiting_status">
                             <option value="first-time">First-Time Guest</option>
                             <option value="returning">Returning Guest / Member</option>
                             <option value="virtual">eCampus Online Visitor</option>
@@ -498,7 +498,7 @@
                     </div>
                     <div class="form-group full-width">
                         <label for="gb-prayer">Prayer Request / Comments</label>
-                        <textarea id="gb-prayer" placeholder="Share any prayer requests or words of encouragement here..."></textarea>
+                        <textarea id="gb-prayer" name="message" placeholder="Share any prayer requests or words of encouragement here..."></textarea>
                     </div>
                 </div>
                 <button type="submit" class="form-submit">Submit Guest Book & Prayer</button>
@@ -512,15 +512,6 @@
         <div class="footer-address">1745 12th Place SW • Birmingham, AL 35211</div>
         <p>&copy; 2026 New Grace Missionary Baptist Church (MBC). All Rights Reserved.</p>
     </footer>
-
-    <!-- Form Submit Script -->
-    <script>
-        function handleCombinedSubmit(event) {
-            event.preventDefault();
-            alert('Thank you for signing our guest book and sharing your prayer request with New Grace MBC!');
-            event.target.reset();
-        }
-    </script>
 
 </body>
 </html>
