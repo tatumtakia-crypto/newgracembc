@@ -287,18 +287,20 @@
             color: var(--light-gold);
         }
 
+        /* Adjusted Layout: Widened sidebar to 1fr 1.25fr ratio for a balanced fit */
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: -4rem auto 4rem;
             position: relative;
             z-index: 10;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1fr 1.25fr;
             gap: 2.5rem;
+            align-items: start;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
             .container {
                 grid-template-columns: 1fr;
                 margin-top: 2rem;
@@ -362,9 +364,27 @@
             font-weight: 500;
         }
 
+        /* Widened Tithing Widget Container */
+        .giving-sidebar-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(30, 98, 156, 0.08);
+            border-top: 5px solid var(--gold);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .giving-sidebar-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--sky-blue);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
         .tithely-embed-container {
             width: 100%;
-            min-height: 550px;
+            min-height: 620px;
             border: none;
             border-radius: 12px;
             background: #ffffff;
@@ -579,9 +599,10 @@
                 <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--sky-blue);">Live! Love! Serve!</p>
             </div>
 
-            <div class="sidebar-card" style="border-top-color: var(--sky-blue);">
-                <h3 style="color: var(--sky-blue);">Tithes & Offering</h3>
-                <p style="font-size: 0.95rem; margin-bottom: 1rem;">Support the ministry and sow a seed safely online.</p>
+            <!-- Widened Tithing Column Embed -->
+            <div class="giving-sidebar-card">
+                <h3>Tithes & Offering</h3>
+                <p style="font-size: 0.95rem; color: #475569; margin-bottom: 0.5rem;">Support the ministry securely online.</p>
                 <iframe src="https://give.tithe.ly/?formId=94613f75-e4fc-4f89-bd4e-5061a8a27450&usedQrCode=true" class="tithely-embed-container" title="Tithes and Offering Giving Form"></iframe>
             </div>
         </aside>
